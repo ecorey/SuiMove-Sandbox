@@ -7,7 +7,7 @@ module fp::yeast {
 
     
     
-    struct Yeast has key, store {
+    struct Yeast has key, store{
         id: UID,
         name: String,
     }
