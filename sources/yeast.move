@@ -18,7 +18,7 @@ module fp::yeast {
         
     }
 
-    /// Anyone can mint their `Flour`!
+    /// Anyone can mint their `Yeast`!
     public fun mint_yeast(name: String, img_url: String, ctx: &mut TxContext): Yeast {
         let id = object::new(ctx);
         Yeast { id, name}

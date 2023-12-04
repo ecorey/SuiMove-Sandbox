@@ -18,7 +18,7 @@ module fp::salt {
         
     }
 
-    /// Anyone can mint their `Flour`!
+    /// Anyone can mint their `Salt`!
     public fun mint_salt(name: String, img_url: String, ctx: &mut TxContext): Salt {
         let id = object::new(ctx);
         Salt { id, name}
