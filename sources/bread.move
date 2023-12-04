@@ -13,7 +13,7 @@ module fp::bread {
 
     // Function to combine Flour, Salt, and Yeast into Bread
     public fun combine_to_bread(flour: &Flour, salt: &Salt, yeast: &Yeast, ctx: &mut TxContext): Bread {
-        let uid = object::new(ctx); // Generate a unique ID for the Bread
+        let uid = object::new(ctx); 
         let name = ;
 
         Bread { uid, name, price, img_url }
