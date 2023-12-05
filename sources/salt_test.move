@@ -1,5 +1,6 @@
 // salt_test.move
 script {
+    
     use fp::salt::{salt, mint_salt};
     use sui::tx_context::mock_context;
     use std::string::String;
