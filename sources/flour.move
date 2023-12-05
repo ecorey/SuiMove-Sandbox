@@ -18,7 +18,7 @@ module fp::flour {
         
     }
 
-    /// Anyone can mint their `Flour`!
+    /// Anyone can mint their `Salt`!
     public fun mint_flour(name: String, img_url: String, ctx: &mut TxContext): Flour {
         let id = object::new(ctx);
         Flour { id, name}
