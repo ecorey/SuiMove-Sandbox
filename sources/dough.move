@@ -1,23 +1,62 @@
+
+
 module fp::dough {
 
-    use sui::tx_context::{TxContext};
+    // imports
+    use std::string;
+    // allows to instantiate and intiate objects
     use sui::object::{Self, UID};
-    use fp::flour::Flour;
-    use fp::salt::Salt;
-    use fp::yeast::Yeast;
+    // TxContext used in testing, and object creation, manipulation
+    use sui::tx_context::{Self, TxContext};
+    // transfer
+    use sui::transfer;
+    
+    
 
-    struct Dough has key, store {
-        uid: UID,
+
+   
+    struct Dough has key {
+        id: UID, 
+        
     }
 
-    fun create_dough(ctx: &mut TxContext): Dough {
-        let uid = object::new(ctx);
-        Dough { uid }
+    
+    
+    fun new_dough( ctx: &mut TxContext): Dough {
+            Dough {
+                id: object::new(ctx),
+                
+            }
+        }
+
+    
+    
+
+    public entry fun create_dough(ctx: &mut TxContext): Dough {
+        
+        let dough = new_dough(ctx);
+        
+        dough 
+    }   
+
+    
+
+    
+    public entry fun transfer_dough(dough: Dough, recipient: address) {
+        transfer::transfer(dough, recipient);
     }
+
 
     // Function to combine Flour, Salt, and Yeast into Dough using references
     public fun combine(flour: &Flour, salt: &Salt, yeast: &Yeast, ctx: &mut TxContext): Dough {
-        // Logic to combine, using references instead of consuming the resources
+        
+        let dough = new_dough(ctx);
+        
+        
         create_dough(ctx)
+
     }
+
+
+
 }

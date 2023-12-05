@@ -1,26 +1,44 @@
-
 module fp::salt {
-    use sui::tx_context::{sender, TxContext};
-    use std::string::{utf8, String};
-    use sui::transfer::transfer;
+
+    // imports
+    use std::string;
     use sui::object::{Self, UID};
+    use sui::tx_context::{Self, TxContext};
+    use sui::transfer;
+    
+    
+
 
     
-    
-    struct Salt has key, store {
-        id: UID,
-        name: String,
-    }
-
-    
-    fun init(ctx: &mut TxContext) {
-        
+    struct Salt has key {
+        id: UID, 
         
     }
 
-    /// Anyone can mint their `Salt`!
-    public fun mint_salt(name: String, img_url: String, ctx: &mut TxContext): Salt {
-        let id = object::new(ctx);
-        Salt { id, name}
+    fun new_salt( ctx: &mut TxContext): Salt {
+            Salt {
+                id: object::new(ctx),
+                
+            }
+        }
+   
+
+    public entry fun create_salt(ctx: &mut TxContext): Salt {
+        
+        let salt = new_salt(ctx);
+        
+        salt 
+    }   
+
+    
+
+    public entry fun transfer_salt(salt: Salt, recipient: address) {
+        transfer::transfer(salt, recipient);
     }
+
+
+
+
+
+
 }

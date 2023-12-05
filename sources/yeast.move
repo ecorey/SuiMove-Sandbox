@@ -1,26 +1,45 @@
-
 module fp::yeast {
-    use sui::tx_context::{sender, TxContext};
-    use std::string::{utf8, String};
-    use sui::transfer::transfer;
+
+    // imports
+    use std::string;
     use sui::object::{Self, UID};
+    use sui::tx_context::{Self, TxContext};
+    use sui::transfer;
+    
+    
+
 
     
-    
-    struct Yeast has key, store{
-        id: UID,
-        name: String,
-    }
-
-    
-    fun init(ctx: &mut TxContext) {
-        
+    struct Yeast has key {
+        id: UID, 
         
     }
 
-    /// Anyone can mint their `Yeast`!
-    public fun mint_yeast(name: String, img_url: String, ctx: &mut TxContext): Yeast {
-        let id = object::new(ctx);
-        Yeast { id, name}
+    fun new_yeast( ctx: &mut TxContext): Yeast {
+            Yeast {
+                id: object::new(ctx),
+                
+            }
+        }
+        
+
+    public entry fun create_yeast(ctx: &mut TxContext): Yeast {
+        
+        let yeast = new_yeast(ctx);
+        
+        yeast 
+    }   
+
+    
+
+   
+    public entry fun transfer_yeast(yeast: Yeast, recipient: address) {
+        transfer::transfer(yeast, recipient);
     }
+
+
+
+
+
+
 }
