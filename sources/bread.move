@@ -1,21 +1,52 @@
 module fp::bread {
-    
-    use sui::tx_context::{TxContext};
+
+    // imports
+    use std::string;
     use sui::object::{Self, UID};
-    use fp::dough::Dough;
+    use sui::tx_context::{Self, TxContext};
+    use sui::transfer;
+    
+    
 
-    struct Bread has key, store {
-        uid: UID,
+
+    
+    struct Bread has key {
+        id: UID, 
+        
     }
 
-    public fun create_bread(ctx: &mut TxContext): Bread {
-        let uid = object::new(ctx);
-        Bread { uid }
+    fun new_bread( ctx: &mut TxContext): Bread {
+            Bread {
+                id: object::new(ctx),
+                
+            }
+        }
+        
+
+    public entry fun create_bread(ctx: &mut TxContext): Bread {
+        
+        let bread = new_bread(ctx);
+        
+        bread 
+    }   
+
+    
+
+   
+    public entry fun transfer_bread(bread: Bread, recipient: address) {
+        transfer::transfer(bread, recipient);
     }
 
+
+     
     // Function to bake Dough into Bread
     public fun bake(dough: &mut Dough, ctx: &mut TxContext): Bread {
         // Logic to bake using a mutable reference to Dough
         create_bread(ctx)
     }
+
+
+
+
+
 }
