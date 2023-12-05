@@ -22,7 +22,7 @@ module fp::salt {
    
 
 
-    public entry fun create_salt(ctx: &mut TxContext): Salt {
+    public  fun create_salt(ctx: &mut TxContext): Salt {
         
         let salt = new_salt(ctx);
         

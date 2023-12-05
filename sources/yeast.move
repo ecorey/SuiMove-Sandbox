@@ -22,7 +22,7 @@ module fp::yeast {
         }
         
 
-    public entry fun create_yeast(ctx: &mut TxContext): Yeast {
+    public  fun create_yeast(ctx: &mut TxContext): Yeast {
         
         let yeast = new_yeast(ctx);
         
