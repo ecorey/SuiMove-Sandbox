@@ -10,8 +10,8 @@ module fp::flour {
 
 
     
-    struct Flour has drop {
-       
+    struct Flour has key {
+       id: UID,
         
     }
 
@@ -19,6 +19,7 @@ module fp::flour {
     fun new_flour( ctx: &mut TxContext): Flour {
         Flour {
           
+          id: object::new(ctx),
             
         }
     }
@@ -31,6 +32,10 @@ module fp::flour {
         flour 
     }   
     
+    public fun delete_flour(flour: Flour) {
+        let Flour { id } = flour;
+        sui::object::delete(id);
+    }
 
     
 

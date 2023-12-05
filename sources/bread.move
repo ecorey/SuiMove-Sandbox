@@ -24,7 +24,7 @@ module fp::bread {
         }
         
 
-    public entry fun create_bread(ctx: &mut TxContext): Bread {
+    public fun create_bread(ctx: &mut TxContext): Bread {
         
         let bread = new_bread(ctx);
         
@@ -34,7 +34,7 @@ module fp::bread {
     
 
    
-    public entry fun transfer_bread(bread: Bread, recipient: address) {
+    public fun transfer_bread(bread: Bread, recipient: address) {
         transfer::transfer(bread, recipient);
     }
 

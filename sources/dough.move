@@ -11,8 +11,8 @@ module fp::dough {
     use fp::yeast::Yeast;
 
     
-    struct Dough has drop {
-        
+    struct Dough has key {
+        id: UID,
         
     }
 
@@ -20,7 +20,7 @@ module fp::dough {
     
     fun new_dough( ctx: &mut TxContext): Dough {
             Dough {
-                
+                id: object::new(ctx),
                 
             }
         }
@@ -34,17 +34,24 @@ module fp::dough {
         dough 
     }   
 
+
+    public fun transfer_dough(dough: Dough, recipient: address) {
+        transfer::transfer(dough, recipient);
+    }
+
    
 
     // Function to combine Flour, Salt, and Yeast into Dough using references
-    public fun combine(flour: &Flour, salt: &Salt, yeast: &Yeast, ctx: &mut TxContext): Dough {
+    public fun combine(flour: Flour, salt: Salt, yeast: Yeast, ctx: &mut TxContext): Dough {
         
-
+         // Delete flour, salt, and yeast
+        fp::flour::delete_flour(flour); 
+        fp::salt::delete_salt(salt);   
+        fp::yeast::delete_yeast(yeast); 
         
+        // Create and return new dough
         let dough = new_dough(ctx);
-        
-        
-        create_dough(ctx)
+        dough
 
     }
 
