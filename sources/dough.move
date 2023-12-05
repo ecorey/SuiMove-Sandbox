@@ -26,7 +26,7 @@ module fp::dough {
 
     
     
-    public entry fun create_dough(ctx: &mut TxContext): Dough {
+    public  fun create_dough(ctx: &mut TxContext): Dough {
         
         let dough = new_dough(ctx);
         
