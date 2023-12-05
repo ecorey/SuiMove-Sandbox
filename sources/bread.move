@@ -6,7 +6,7 @@ module fp::bread {
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
     
-    use fp::dough::Dough;
+    use fp::dough::{Dough, delete_dough};
 
 
 
@@ -41,10 +41,14 @@ module fp::bread {
 
      
     // Function to bake Dough into Bread
-    public fun bake(dough: &mut Dough, ctx: &mut TxContext): Bread {
+    public fun bake(dough: Dough, ctx: &mut TxContext): Bread {
         
-        
-        create_bread(ctx)
+        // Delete the Dough object
+        delete_dough(dough);
+
+        // Create and return new Bread
+        let bread = new_bread(ctx);
+        bread
     }
 
 
