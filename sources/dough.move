@@ -39,6 +39,12 @@ module fp::dough {
         transfer::transfer(dough, recipient);
     }
 
+
+     public fun delete_dough(dough: Dough) {
+        let Dough { id } = dough;
+        sui::object::delete(id);
+    }
+
    
 
     // Function to combine Flour, Salt, and Yeast into Dough using references
