@@ -12,6 +12,7 @@ module fp::yeast {
         
     }
 
+
     fun new_yeast( ctx: &mut TxContext): Yeast {
             Yeast {
              
@@ -28,15 +29,11 @@ module fp::yeast {
         yeast 
     }   
 
-    
-
    
    public fun delete_yeast(yeast: Yeast) {
         let Yeast { id } = yeast;
         sui::object::delete(id);
     }
-
-
 
 
 

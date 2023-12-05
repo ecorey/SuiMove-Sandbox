@@ -8,8 +8,6 @@ module fp::flour {
     
     
 
-
-    
     struct Flour has key {
        id: UID,
         
@@ -24,6 +22,7 @@ module fp::flour {
         }
     }
 
+
     // function to create the flour object and return it
     public entry fun create_flour(ctx: &mut TxContext): Flour {
         
@@ -31,6 +30,7 @@ module fp::flour {
         
         flour 
     }   
+    
     
     public fun delete_flour(flour: Flour) {
         let Flour { id } = flour;

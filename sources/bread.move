@@ -8,8 +8,6 @@ module fp::bread {
     
     use fp::dough::{Dough, delete_dough};
 
-
-
     
     struct Bread has key {
         id: UID, 
@@ -32,14 +30,11 @@ module fp::bread {
     }   
 
     
-
-   
     public fun transfer_bread(bread: Bread, recipient: address) {
         transfer::transfer(bread, recipient);
     }
 
 
-     
     // Function to bake Dough into Bread
     public fun bake(dough: Dough, ctx: &mut TxContext): Bread {
         

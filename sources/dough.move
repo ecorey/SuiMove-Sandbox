@@ -17,7 +17,6 @@ module fp::dough {
     }
 
     
-    
     fun new_dough( ctx: &mut TxContext): Dough {
             Dough {
                 id: object::new(ctx),
@@ -46,7 +45,6 @@ module fp::dough {
     }
 
    
-
     // Function to combine Flour, Salt, and Yeast into Dough using references
     public fun combine(flour: Flour, salt: Salt, yeast: Yeast, ctx: &mut TxContext): Dough {
         
