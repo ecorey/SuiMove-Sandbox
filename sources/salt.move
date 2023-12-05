@@ -7,21 +7,19 @@ module fp::salt {
     use sui::transfer;
     
     
-
-
-    
-    struct Salt has key {
-        id: UID, 
-        
+    struct Salt has drop {
+      
     }
+
 
     fun new_salt( ctx: &mut TxContext): Salt {
             Salt {
-                id: object::new(ctx),
+                
                 
             }
         }
    
+
 
     public entry fun create_salt(ctx: &mut TxContext): Salt {
         
@@ -29,14 +27,6 @@ module fp::salt {
         
         salt 
     }   
-
-    
-
-    public entry fun transfer_salt(salt: Salt, recipient: address) {
-        transfer::transfer(salt, recipient);
-    }
-
-
 
 
 

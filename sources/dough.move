@@ -6,12 +6,13 @@ module fp::dough {
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
     
+    use fp::flour::Flour;
+    use fp::salt::Salt;
+    use fp::yeast::Yeast;
+
     
-
-
-   
-    struct Dough has key {
-        id: UID, 
+    struct Dough has drop {
+        
         
     }
 
@@ -19,14 +20,13 @@ module fp::dough {
     
     fun new_dough( ctx: &mut TxContext): Dough {
             Dough {
-                id: object::new(ctx),
+                
                 
             }
         }
 
     
     
-
     public entry fun create_dough(ctx: &mut TxContext): Dough {
         
         let dough = new_dough(ctx);
@@ -34,12 +34,7 @@ module fp::dough {
         dough 
     }   
 
-    
-
-    public entry fun transfer_dough(dough: Dough, recipient: address) {
-        transfer::transfer(dough, recipient);
-    }
-
+   
 
     // Function to combine Flour, Salt, and Yeast into Dough using references
     public fun combine(flour: &Flour, salt: &Salt, yeast: &Yeast, ctx: &mut TxContext): Dough {

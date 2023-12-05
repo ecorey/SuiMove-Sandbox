@@ -7,17 +7,14 @@ module fp::yeast {
     use sui::transfer;
     
     
-
-
-    
-    struct Yeast has key {
-        id: UID, 
+    struct Yeast has drop {
+       
         
     }
 
     fun new_yeast( ctx: &mut TxContext): Yeast {
             Yeast {
-                id: object::new(ctx),
+             
                 
             }
         }
@@ -33,10 +30,7 @@ module fp::yeast {
     
 
    
-    public entry fun transfer_yeast(yeast: Yeast, recipient: address) {
-        transfer::transfer(yeast, recipient);
-    }
-
+   
 
 
 

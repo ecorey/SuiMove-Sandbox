@@ -6,7 +6,8 @@ module fp::bread {
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
     
-    
+    use fp::dough::Dough;
+
 
 
     
@@ -41,7 +42,8 @@ module fp::bread {
      
     // Function to bake Dough into Bread
     public fun bake(dough: &mut Dough, ctx: &mut TxContext): Bread {
-        // Logic to bake using a mutable reference to Dough
+        
+        
         create_bread(ctx)
     }
 
