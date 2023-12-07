@@ -3,16 +3,15 @@
 
 **Project Overview:**
 
-*Concept:* Users can purchase three separate objects - flour, salt, and yeast - and combine them to create a bread NFT.
 
-*Mechanics:* Combining the three ingredients requires an additional payment in Sui, representing water.
+    - The explanation of the project including the aim of the project.
 
----
+    - The devnet contract address.
 
----
+    - How to set up the project. In this part, you can also share the following link for Move on Sui setup: Install Sui to Build | Sui Docs
 
-**Front end integration:**
-https://kit.suiet.app/docs/QuickStart
+    - How to run the project.
 
-**Display Library:**
-https://docs.sui.io/standards/display
+    - How to test the project.
+
+    - Screenshot of the test results.
