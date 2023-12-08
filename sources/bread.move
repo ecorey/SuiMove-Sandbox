@@ -24,7 +24,7 @@ module fp::bread {
         
 
     // Function to bake Dough into Bread
-    public entry fun bake(dough: Dough, ctx: &mut TxContext) {
+    public entry fun bake(dough: &mut Dough, ctx: &mut TxContext) {
         
         // Delete the Dough object
         delete_dough(dough);
