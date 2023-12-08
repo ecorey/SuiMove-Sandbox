@@ -1,40 +1,42 @@
 module fp::yeast {
 
     // imports
-    use std::string;
     use sui::object::{Self, UID};
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
     
-    
+
     struct Yeast has key {
        id: UID,
         
     }
 
-
+    
     fun new_yeast( ctx: &mut TxContext): Yeast {
-            Yeast {
-             
-             id: object::new(ctx),
-                
-            }
+        Yeast {
+          
+          id: object::new(ctx),
+            
         }
-        
-
-    public  fun create_yeast(ctx: &mut TxContext): Yeast {
-        
-        let yeast = new_yeast(ctx);
-        
-        yeast 
-    }   
-
-   
-   public fun delete_yeast(yeast: Yeast) {
-        let Yeast { id } = yeast;
-        sui::object::delete(id);
     }
 
 
+    // function to create the flour object and return it
+    public entry fun create_yeast(ctx: &mut TxContext) {
+        let yeast = new_yeast(ctx);
+        transfer::transfer(yeast, tx_context::sender(ctx))
+    }   
+    
+
+    public entry fun delete_yeast(yeast: Yeast) {
+        
+        let Yeast {
+             id 
+             } = yeast;
+        
+        object::delete(id);
+    }
+
+    
 
 }
