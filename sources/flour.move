@@ -26,10 +26,16 @@ module fp::flour {
         let flour = new_flour(ctx);
         transfer::transfer(flour, tx_context::sender(ctx))
     }   
+
+
+    public entry fun transfer_flour(flour: Dough, recipient: address) {
+        transfer::transfer(dough, recipient);
+    }
+
     
 
     public entry fun delete_flour(flour: Flour) {
-        
+
         let Flour {
              id 
              } = flour;
