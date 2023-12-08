@@ -37,7 +37,7 @@ module fp::dough {
 
    
     // Function to combine Flour, Salt, and Yeast into Dough using references
-    public entry fun combine(flour: Flour, salt: Salt, yeast: Yeast, ctx: &mut TxContext) {
+    public entry fun combine(flour: &mut Flour, salt: &mut Salt, yeast: &mut Yeast, ctx: &mut TxContext) {
         
          // Delete flour, salt, and yeast
         fp::flour::delete_flour(flour); 
