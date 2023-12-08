@@ -24,13 +24,7 @@ module fp::dough {
         }
     }
 
-     
-
-    public entry fun transfer_dough(dough: Dough, recipient: address) {
-        transfer::transfer(dough, recipient);
-    }
-
-
+    
 
     public entry fun delete_dough(dough: Dough) {
         
