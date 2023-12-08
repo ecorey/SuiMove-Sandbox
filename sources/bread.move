@@ -1,7 +1,6 @@
 module fp::bread {
 
     // imports
-    use std::string;
     use sui::object::{Self, UID};
     use sui::tx_context::{Self, TxContext};
     use sui::transfer;
@@ -14,7 +13,9 @@ module fp::bread {
         
     }
 
+
     fun new_bread( ctx: &mut TxContext): Bread {
+            
             Bread {
                 id: object::new(ctx),
                 
@@ -22,32 +23,16 @@ module fp::bread {
         }
         
 
-    public fun create_bread(ctx: &mut TxContext): Bread {
-        
-        let bread = new_bread(ctx);
-        
-        bread 
-    }   
-
-    
-    public fun transfer_bread(bread: Bread, recipient: address) {
-        transfer::transfer(bread, recipient);
-    }
-
-
     // Function to bake Dough into Bread
-    public fun bake(dough: Dough, ctx: &mut TxContext): Bread {
+    public entry fun bake(dough: Dough, ctx: &mut TxContext) {
         
         // Delete the Dough object
         delete_dough(dough);
 
-        // Create and return new Bread
+        // Create and return new dough
         let bread = new_bread(ctx);
-        bread
+        transfer::transfer(bread, tx_context::sender(ctx))
+    
     }
-
-
-
-
 
 }
