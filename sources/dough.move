@@ -1,26 +1,42 @@
 module fp::dough {
-    
-    use sui::object::UID;
-    use sui::tx_context::TxContext;
 
+    // imports
+    use sui::object::{Self, UID};
+    use sui::tx_context::{Self, TxContext};
+    use sui::transfer;
     
-    use bake::flour::{Flour, delete_flour};
-    use bake::salt::{Salt, delete_salt};
-    use bake::yeast::{Yeast, delete_yeast};
 
     struct Dough has key {
-        id: UID,
+       id: UID,
+        
     }
 
-    public fun new_dough(ctx: &mut TxContext): Dough {
+    
+    fun new_dough( ctx: &mut TxContext): Dough {
         Dough {
-            id: object::new(ctx),
+          
+          id: object::new(ctx),
+            
         }
     }
 
-    public fun delete_dough(dough: &mut Dough) {
-        object::delete(dough.id);
+
+    // function to create the flour object and return it
+    public entry fun create_dough(ctx: &mut TxContext) {
+        let dough = new_dough(ctx);
+        transfer::transfer(dough, tx_context::sender(ctx))
+    }   
+    
+
+    public entry fun delete_dough(dough: Dough) {
+        
+        let Dough {
+             id 
+             } = dough;
+        
+        object::delete(id);
     }
+
 
     // Function to combine Flour, Salt, and Yeast into Dough
     public entry fun combine(flour: &mut Flour, salt: &mut Salt, yeast: &mut Yeast, ctx: &mut TxContext) {
