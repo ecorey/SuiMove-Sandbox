@@ -1,7 +1,8 @@
 module bake::dough {
-    use sui::object::{self, UID};
-    use sui::tx_context::{self, TxContext};
-    use sui::transfer;
+    
+    use sui::object::UID;
+    use sui::tx_context::TxContext;
+
     
     use bake::flour::{Flour, delete_flour};
     use bake::salt::{Salt, delete_salt};
