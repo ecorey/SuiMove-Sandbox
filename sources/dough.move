@@ -1,55 +1,35 @@
-module fp::dough {
-
-    // imports
-    use sui::object::{Self, UID};
-    use sui::tx_context::{Self, TxContext};
+module bake::dough {
+    use sui::object::{self, UID};
+    use sui::tx_context::{self, TxContext};
     use sui::transfer;
     
-    use fp::flour::Flour;
-    use fp::salt::Salt;
-    use fp::yeast::Yeast;
+    use bake::flour::{Flour, delete_flour};
+    use bake::salt::{Salt, delete_salt};
+    use bake::yeast::{Yeast, delete_yeast};
 
-    
     struct Dough has key {
         id: UID,
-        
     }
 
-    
-     fun new_dough( ctx: &mut TxContext): Dough {
+    public fun new_dough(ctx: &mut TxContext): Dough {
         Dough {
-          
-          id: object::new(ctx),
-            
+            id: object::new(ctx),
         }
     }
 
-    
-
-    public entry fun delete_dough(dough: Dough) {
-        
-        let Dough {
-             id 
-             } = dough;
-        
-        object::delete(id);
+    public fun delete_dough(dough: &mut Dough) {
+        object::delete(dough.id);
     }
 
-   
-    // Function to combine Flour, Salt, and Yeast into Dough using references
+    // Function to combine Flour, Salt, and Yeast into Dough
     public entry fun combine(flour: &mut Flour, salt: &mut Salt, yeast: &mut Yeast, ctx: &mut TxContext) {
-        
-         // Delete flour, salt, and yeast
-        fp::flour::delete_flour(flour); 
-        fp::salt::delete_salt(salt);   
-        fp::yeast::delete_yeast(yeast); 
-        
-        // Create and return new dough
+        // Create new dough
         let dough = new_dough(ctx);
-        transfer::transfer(dough, tx_context::sender(ctx))
+        transfer::transfer(dough, tx_context::sender(ctx));
 
+        // Delete the original resources
+        delete_flour(flour);
+        delete_salt(salt);
+        delete_yeast(yeast);
     }
-
-
-
 }
