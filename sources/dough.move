@@ -1,4 +1,4 @@
-module bake::dough {
+module fp::dough {
     
     use sui::object::UID;
     use sui::tx_context::TxContext;
